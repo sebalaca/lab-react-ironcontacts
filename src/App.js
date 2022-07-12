@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import "./App.css";
+import contactData from "./contacts.json";
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Table from "react-bootstrap/Table";
+
+let firstContacts = contactData.slice(0, 5);
 
 function App() {
+  const [contacts, setContacts] = useState(firstContacts);
+  // console.log(contacts)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>IronContacts</h1>
+      <Table>
+        <thead>
+          <tr style={{ display: "flex", justifyContent: "space-between" }}>
+            <th>Picture</th>
+            <th>Name</th>
+            <th>Popularity</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            {contacts.map((contact) => (
+              <td
+                key={contact.id}
+                style={{ display: "flex", justifyContent: "space-between"}}
+              >
+                <img
+                  src={contact.pictureUrl}
+                  alt="ContactPicture"
+                  height="200px"
+                  width="150px"
+                />
+                <h2>{contact.name}</h2>
+                <p>{contact.popularity}</p>
+              </td>
+            ))}
+          </tr>
+        </tbody>
+      </Table>
     </div>
   );
 }
-
 export default App;
