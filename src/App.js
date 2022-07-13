@@ -30,6 +30,12 @@ function App() {
     ]);
   };
 
+  const handleDelete = (e, id) => {
+    e.preventDefault()
+    setContacts([...contacts.filter(i => i.id !== id)])
+    console.log(id)
+  }
+
   console.log(contacts);
 
   return (
@@ -46,6 +52,7 @@ function App() {
             <th>Popularity</th>
             <th>Won an Oscar</th>
             <th>Won an Emmy</th>
+            <th>Actions</th>
           </tr>
         </thead>
 
@@ -79,6 +86,9 @@ function App() {
                 ) : (
                   <span>{"no content"}</span>
                 )}
+              </td>
+              <td>
+                <button onClick={(e) => {handleDelete(e, contact.id)}}>Delete</button>
               </td>
             </tr>
           ))}
