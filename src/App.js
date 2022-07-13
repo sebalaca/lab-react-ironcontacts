@@ -5,9 +5,8 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
 
-let firstContacts = contactData.slice(0, 5);
-
 function App() {
+  let firstContacts = contactData.slice(0, 20);
   const [contacts, setContacts] = useState(firstContacts);
   // console.log(contacts)
 
@@ -16,31 +15,40 @@ function App() {
       <h1>IronContacts</h1>
       <Table>
         <thead>
-          <tr style={{ display: "flex", justifyContent: "space-between" }}>
+          <tr>
             <th>Picture</th>
             <th>Name</th>
             <th>Popularity</th>
+            <th>Won an Oscar</th>
+            <th>Won an Emmy</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr>
-            {contacts.map((contact) => (
-              <td
-                key={contact.id}
-                style={{ display: "flex", justifyContent: "space-between"}}
-              >
+          {contacts.map((contact) => (
+            <tr key={contact.id}>
+              <td>
                 <img
                   src={contact.pictureUrl}
                   alt="ContactPicture"
                   height="200px"
                   width="150px"
                 />
+              </td>
+              <td>
                 <h2>{contact.name}</h2>
+              </td>
+              <td>
                 <p>{contact.popularity}</p>
               </td>
-            ))}
-          </tr>
+              <td>
+              {contact.wonOscar === true ? <span>🏆</span> : <span>{"no content"}</span>}
+              </td>
+              <td>
+              {contact.wonEmmy === true ? <span>🏆</span> : <span>{"no content"}</span>}
+              </td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </div>
