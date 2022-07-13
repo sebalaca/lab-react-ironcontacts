@@ -6,13 +6,25 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Table from "react-bootstrap/Table";
 
 function App() {
-  let firstContacts = contactData.slice(0, 20);
+  let firstContacts = contactData.slice(0, 5);
   const [contacts, setContacts] = useState(firstContacts);
   // console.log(contacts)
+
+  //Elije contacto random
+  
+  const handleRandomContact = () => {
+    let randomContact = contactData[Math.floor(Math.random() * contactData.length)]
+    setContacts([...contacts, randomContact]);
+  }
+  
+  console.log(contacts);
 
   return (
     <div className="App">
       <h1>IronContacts</h1>
+      <button onClick={handleRandomContact}>
+        Add Random Contact
+      </button>
       <Table>
         <thead>
           <tr>
